@@ -120,13 +120,13 @@
   No navegador:
 
   ```bash
-  http://localhost:3000/tarefas
+  http://localhost:3000/nome-da-tabela
   ```
 
   No terminal:
 
   ```bash
-  curl http://localhost:3000/tarefas
+  curl http://localhost:3000/nome-da-tabela
   ```
 
 ---
