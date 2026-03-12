@@ -186,6 +186,12 @@
       npx ng g c features/tarefas/pages/edicao-tarefa
       ```
 
+    - [ ] Criar componente cabecalho
+
+      ```bash
+      npx ng g c shared/components/cabecalho
+      ```
+
     - [ ] Criar componente modal de confirmação
 
       ```bash
@@ -248,6 +254,7 @@ Roteamento e navegação [🔎](./conteudo-teorico/navegacao.md)
         loadComponent: () =>
           import('./features/tarefas/pages/listagem-tarefas/listagem-tarefas')
             .then((m) => m.ListagemTarefas),
+        pathMatch: 'full',
       }
       ```
 
@@ -310,19 +317,6 @@ npx ng add @angular/material
 
 - [ ] Criar app shell
   - Neste projeto:
-    - [ ] Criar toolbar
-
-      ```bash
-      npx ng g c shared/components/cabecalho
-      ```
-
-      ```html
-      <!-- src/app/shared/components/cabecalho/cabecalho.html -->
-      <mat-toolbar>
-        <span>Lista de Tarefas</span>
-      </mat-toolbar>
-      ```
-
     - [ ] Adicionar `router-outlet`
 
       ```html
@@ -342,107 +336,119 @@ npx ng add @angular/material
       ```
 
 - [ ] Colocar conteúdo simples nas páginas
-  - Neste projeto:
-    - [ ] Página de listagem:
 
-      ```html
-      <!-- src/app/features/tarefas/pages/listagem-tarefas/listagem-tarefas.html -->
-      <section>
-        <h2>Tarefas</h2>
+> Importante não esquece da propriedade `type` nos botões
+
+- Neste projeto:
+  - [ ] Página de listagem:
+
+    ```html
+    <!-- src/app/features/tarefas/pages/listagem-tarefas/listagem-tarefas.html -->
+    <section>
+      <h2>Tarefas</h2>
+
+      <mat-form-field>
+        <mat-label>Pesquisar tarefa</mat-label>
+        <input matInput placeholder="Ex.: estudar para prova" />
+      </mat-form-field>
+
+      <div>
+        <button type="button" matButton="filled">Nova tarefa</button>
+      </div>
+
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Tarefa de exemplo</mat-card-title>
+          <mat-card-subtitle>Pendente</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>Descrição da tarefa de exemplo.</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button type="button" matButton="filled">Editar</button>
+          <button type="button" matButton="outlined">Remover</button>
+        </mat-card-actions>
+      </mat-card>
+    </section>
+    ```
+
+  - [ ] Página de criação:
+
+    ```html
+    <!-- src/app/features/tarefas/pages/criacao-tarefa/criacao-tarefa.html -->
+    <section>
+      <h2>Criacao de tarefa</h2>
+
+      <form>
+        <mat-form-field>
+          <mat-label>Titulo</mat-label>
+          <input matInput placeholder="Digite o titulo da tarefa" />
+        </mat-form-field>
 
         <mat-form-field>
-          <mat-label>Pesquisar tarefa</mat-label>
-          <input matInput placeholder="Ex.: estudar para prova" />
+          <mat-label>Descricao</mat-label>
+          <textarea matInput placeholder="Digite uma descricao para a tarefa"></textarea>
         </mat-form-field>
 
         <div>
-          <button matButton="filled">Nova tarefa</button>
+          <button type="button" matButton="outlined">Cancelar</button>
+          <button type="submit" matButton="filled">Salvar</button>
         </div>
+      </form>
+    </section>
+    ```
 
-        <mat-card>
-          <mat-card-header>
-            <mat-card-title>Tarefa de exemplo</mat-card-title>
-            <mat-card-subtitle>Pendente</mat-card-subtitle>
-          </mat-card-header>
+  - [ ] Página de edição:
 
-          <mat-card-content>
-            <p>Descrição da tarefa de exemplo.</p>
-          </mat-card-content>
+    ```html
+    <!-- src/app/features/tarefas/pages/edicao-tarefa/edicao-tarefa.html -->
+    <section>
+      <h2>Edicao de tarefa</h2>
 
-          <mat-card-actions>
-            <button matButton="filled">Editar</button>
-            <button matButton="outlined">Remover</button>
-          </mat-card-actions>
-        </mat-card>
-      </section>
-      ```
+      <form>
+        <mat-form-field>
+          <mat-label>Titulo</mat-label>
+          <input matInput value="Tarefa de exemplo" />
+        </mat-form-field>
 
-    - [ ] Página de criação:
+        <mat-form-field>
+          <mat-label>Descricao</mat-label>
+          <textarea matInput>Descricao da tarefa de exemplo.</textarea>
+        </mat-form-field>
 
-      ```html
-      <!-- src/app/features/tarefas/pages/criacao-tarefa/criacao-tarefa.html -->
-      <section>
-        <h2>Criacao de tarefa</h2>
+        <div>
+          <button type="button" matButton="outlined">Cancelar</button>
+          <button type="submit" matButton="filled">Salvar alteracoes</button>
+        </div>
+      </form>
+    </section>
+    ```
 
-        <form>
-          <mat-form-field>
-            <mat-label>Titulo</mat-label>
-            <input matInput placeholder="Digite o titulo da tarefa" />
-          </mat-form-field>
+  - [ ] Modal de confirmação:
 
-          <mat-form-field>
-            <mat-label>Descricao</mat-label>
-            <textarea matInput placeholder="Digite uma descricao para a tarefa"></textarea>
-          </mat-form-field>
+    ```html
+    <h2 mat-dialog-title>Remover tarefa</h2>
 
-          <div>
-            <button type="button" matButton="outlined">Cancelar</button>
-            <button type="submit" matButton="filled">Salvar</button>
-          </div>
-        </form>
-      </section>
-      ```
+    <mat-dialog-content>
+      <p>Tem certeza que deseja remover esta tarefa?</p>
+    </mat-dialog-content>
 
-    - [ ] Página de edição:
+    <mat-dialog-actions align="end">
+      <button matButton>Cancelar</button>
+      <button matButton="filled">Remover</button>
+    </mat-dialog-actions>
+    ```
 
-      ```html
-      <!-- src/app/features/tarefas/pages/edicao-tarefa/edicao-tarefa.html -->
-      <section>
-        <h2>Edicao de tarefa</h2>
+  - [ ] Cabeçalho
 
-        <form>
-          <mat-form-field>
-            <mat-label>Titulo</mat-label>
-            <input matInput value="Tarefa de exemplo" />
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Descricao</mat-label>
-            <textarea matInput>Descricao da tarefa de exemplo.</textarea>
-          </mat-form-field>
-
-          <div>
-            <button type="button" matButton="outlined">Cancelar</button>
-            <button type="submit" matButton="filled">Salvar alteracoes</button>
-          </div>
-        </form>
-      </section>
-      ```
-
-    - [ ] Modal de confirmação:
-
-      ```html
-      <h2 mat-dialog-title>Remover tarefa</h2>
-
-      <mat-dialog-content>
-        <p>Tem certeza que deseja remover esta tarefa?</p>
-      </mat-dialog-content>
-
-      <mat-dialog-actions align="end">
-        <button matButton>Cancelar</button>
-        <button matButton="filled">Remover</button>
-      </mat-dialog-actions>
-      ```
+    ```html
+    <!-- src/app/shared/components/cabecalho/cabecalho.html -->
+    <mat-toolbar>
+      <span>Lista de Tarefas</span>
+    </mat-toolbar>
+    ```
 
 ---
 
@@ -450,9 +456,13 @@ npx ng add @angular/material
 
 - [ ] Importar `RouterLink` nos componentes de página
 
+  ```ts
+  import { RouterLink } from '@angular/router';
+  ```
+
 - [ ] Implementar `routerLink="rota-de-destino"` nos elementos de navegação do template
   - Neste projeto:
-    - da listagem para criação
+    - da **listagem** para criação
       - [ ] Adicionar link no botão **Nova tarefa**
 
         ```html
@@ -460,7 +470,7 @@ npx ng add @angular/material
         <button matButton="filled" routerLink="/tarefas/criacao">Nova tarefa</button>
         ```
 
-    - da listagem para edição
+    - da **listagem** para edição
       - [ ] Adicionar link no botão **Editar**
 
         > O `1` ainda é fixo só para validar a navegação.
@@ -471,7 +481,7 @@ npx ng add @angular/material
         <button matButton="filled" [routerLink]="['/tarefas/edicao', 1]">Editar</button>
         ```
 
-    - de volta ao cancelar na página de criação
+    - de **criação** para listagem
       - [ ] Adicionar link no botão **Cancelar**
 
         ```html
@@ -479,13 +489,21 @@ npx ng add @angular/material
         <button type="button" matButton="outlined" routerLink="/tarefas">Cancelar</button>
         ```
 
-    - de volta ao cancelar na página de edição
+      - Não adicionar rota no botão **Salvar**
+
+        > Essa navegação fará parte da lógica no TypeScript
+
+    - de **edição** para listagem
       - [ ] Adicionar link no botão **Cancelar**
 
         ```html
         <!-- src/app/features/tarefas/pages/edicao-tarefa/edicao-tarefa.html -->
         <button type="button" matButton="outlined" routerLink="/tarefas">Cancelar</button>
         ```
+
+      - Não adicionar rota no botão **Salvar**
+
+        > Essa navegação fará parte da lógica no TypeScript
 
     - de volta após salvar
       - [ ] Adicionar link no botão **Salvar**
