@@ -161,7 +161,42 @@
 
 ---
 
-## 5 Configurações estruturais
+## 5. Criar páginas-base com Angular CLI
+
+> `ng generate component nome-do-componente` = `ng g c nome-do-componente`
+> `npx ng g c nome-do-componente`, se o Angular não foi instalado globalmente
+
+- [ ] Criar artefatos [🔎](./conteudo-teorico/artefatos.md) do tipo componente para servir de páginas
+  - Neste projeto:
+    - [ ] Criar página de listagem
+
+      ```bash
+      npx ng g c features/tarefas/pages/listagem-tarefas
+      ```
+
+    - [ ] Criar página de criação
+
+      ```bash
+      npx ng g c features/tarefas/pages/criacao-tarefa
+      ```
+
+    - [ ] Criar página de edição
+
+      ```bash
+      npx ng g c features/tarefas/pages/edicao-tarefa
+      ```
+
+    - [ ] Criar componente modal de confirmação
+
+      ```bash
+      npx ng g c shared/components/modal-confirmacao
+      ```
+
+- [ ] Confirmar que os arquivos foram gerados na estrutura correta
+
+---
+
+## 6. Configurações estruturais
 
 > Padronizão de nomes agrega profissionalismo
 > Aliases de importação aumentam a legibilidade do código e o quanto antes implementar, menos refatoração de código
@@ -186,46 +221,11 @@
 
 ---
 
-## 6. Criar páginas-base com Angular CLI
-
-> `ng generate component nome-do-componente` = `ng g c nome-do-componente`
-> `npx ng g c nome-do-componente`, se o Angular não foi instalado globalmente
-
-- [ ] Criar artefatos [🔎](./conteudo-teorico/artefatos.md) do tipo componente para servir de páginas
-  - Neste projeto:
-    - [ ] Criar página de listagem
-
-      ```bash
-      ng g c features/tarefas/pages/listagem-tarefas
-      ```
-
-    - [ ] Criar página de criação
-
-      ```bash
-      ng g c features/tarefas/pages/criacao-tarefa
-      ```
-
-    - [ ] Criar página de edição
-
-      ```bash
-      ng g c features/tarefas/pages/edicao-tarefa
-      ```
-
-    - [ ] Criar componente modal de confirmação
-
-      ```bash
-      ng g c shared/components/modal-confirmacao
-      ```
-
-- [ ] Confirmar que os arquivos foram gerados na estrutura correta
-
----
-
 ## 7. Configurar roteamento principal
 
 Roteamento e navegação [🔎](./conteudo-teorico/navegacao.md)
 
-- [ ] Configurar `provideRouter(...)`
+- [ ] Configurar `provideRouter(routes)` no `app.config.ts`
 
   ```ts
   import { ApplicationConfig } from '@angular/core';
