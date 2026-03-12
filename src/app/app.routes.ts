@@ -5,6 +5,7 @@ export const routes: Routes = [
     path: 'tarefas',
     loadComponent: () =>
       import('@pages/listagem-tarefas/listagem-tarefas').then((m) => m.ListagemTarefas),
+    pathMatch: 'full',
   },
   {
     path: 'tarefas/criacao',
