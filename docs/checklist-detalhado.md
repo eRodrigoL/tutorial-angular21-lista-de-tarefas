@@ -163,8 +163,8 @@
 
 ## 5. Criar páginas-base com Angular CLI
 
-> `ng generate component nome-do-componente` = `ng g c nome-do-componente`
-> `npx ng g c nome-do-componente`, se o Angular não foi instalado globalmente
+> - `ng generate component nome-do-componente` = `ng g c nome-do-componente`
+> - `npx ng g c nome-do-componente`, se o Angular não foi instalado globalmente
 
 - [ ] Criar artefatos [🔎](./conteudo-teorico/artefatos.md) do tipo componente para servir de páginas
   - Neste projeto:
@@ -533,20 +533,32 @@ npx ng add @angular/material
 > O service centraliza o acesso aos dados e evita espalhar chamadas HTTP pelos componentes.
 
 - [ ] Criar interface principal da feature
-  - Neste projeto:
-    - [ ] Criar `tarefa.ts`
 
-      ```ts
-      // src/app/shared/interfaces/tarefa.ts
-      export interface Tarefa {
-        id: number;
-        titulo: string;
-        descricao: string;
-        concluida: boolean;
-      }
+  > - `ng generate interface nome-da-interface` = `ng g i nome-da-interface`
+  > - `npx ng g c nome-da-interface`, se o Angular não foi instalado globalmente
 
-      export type PayloadTarefa = Omit<Tarefa, 'id'>;
-      ```
+  ```bash
+  npx ng generate interface shared/interfaces/tarefa
+  ```
+
+- Neste projeto:
+  - [ ] Criar `tarefa.ts`
+
+    ```bash
+    npx ng generate interface nome-da-interface
+    ```
+
+    ```ts
+    // src/app/shared/interfaces/tarefa.ts
+    export interface Tarefa {
+      id: number;
+      titulo: string;
+      descricao: string;
+      concluida: boolean;
+    }
+
+    export type PayloadTarefa = Omit<Tarefa, 'id'>;
+    ```
 
 - [ ] Configurar `provideHttpClient()` no `app.config.ts`
 
@@ -576,7 +588,7 @@ npx ng add @angular/material
 
     ```ts
     // src/app/core/services/tarefas.service.ts
-    import { HttpClient, HttpParams } from '@angular/common/http';
+    import { HttpClient } from '@angular/common/http';
     import { inject, Injectable } from '@angular/core';
 
     /*
@@ -603,6 +615,7 @@ npx ng add @angular/material
 
     ```ts
     // src/app/core/services/tarefas.service.ts
+    import { ..., HttpParams } from '@angular/common/http';
     import { Tarefa } from '@shared/interfaces/tarefa';
 
     [...]
@@ -670,15 +683,7 @@ npx ng add @angular/material
       curl http://localhost:3000/tarefas
       ```
 
-    - [ ] Buscar uma tarefa pelo `id`
-
-      ```bash
-      curl http://localhost:3000/tarefas/1
-      ```
-
-  - [ ] Confirmar que a rota responde corretamente antes de integrar com a aplicação Angular
-    - Neste projeto:
-      - [ ] rota `/tarefas`
+    Como tabela `tarefas` está vazia, o retorno deve ser um Array vazio: **[ ]**
 
 ---
 
