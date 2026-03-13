@@ -1,1 +1,20 @@
-<p>edicao-tarefa works!</p>
+<section>
+  <h2>Edição de tarefa</h2>
+
+  <form>
+    <mat-form-field>
+      <mat-label>Título</mat-label>
+      <input matInput value="Tarefa de exemplo" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Descrição</mat-label>
+      <textarea matInput>Descrição de tarefa de exemplo</textarea>
+    </mat-form-field>
+
+    <div>
+      <button type="button" matButton="outlined" routerLink="/tarefas">Cancelar</button>
+      <button type="submit" matButton="filled">Salvar alterações</button>
+    </div>
+  </form>
+</section>

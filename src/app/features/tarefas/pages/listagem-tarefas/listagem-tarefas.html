@@ -7,7 +7,7 @@
   </mat-form-field>
 
   <div>
-    <button matButton="filled">Nova tarefa</button>
+    <button matButton="filled" routerLink="/tarefas/criacao">Nova tarefa</button>
   </div>
 
   <mat-card>
@@ -21,8 +21,8 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-button="filled">Editar</button>
-      <button mat-button="outlined">Remover</button>
+      <button matButton="filled" [routerLink]="['/tarefas/edicao', 1]">Editar</button>
+      <button matButton="outlined">Remover</button>
     </mat-card-actions>
   </mat-card>
 </section>
